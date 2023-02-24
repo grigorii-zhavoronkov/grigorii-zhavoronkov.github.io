@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>MathML</title>
+    <script id="xsl" type="text/xsl">
+        <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+            <xsl:output method="xml" indent="yes"/>
+
+            <xsl:template match="/"><math xmlns="http://www.w3.org/1998/Math/MathML"><xsl:apply-templates /></math></xsl:template>
+
+            <xsl:template match="строка"><mrow><xsl:apply-templates select="*"/></mrow></xsl:template>
+
+            <xsl:template match="операнд"><mi><xsl:value-of select="." /></mi></xsl:template>
+
+            <xsl:template match="оператор"><mo><xsl:value-of select="." /></mo></xsl:template>
+
+            <xsl:template match="корень"><msqrt><xsl:apply-templates select="*"/></msqrt></xsl:template>
+
+            <xsl:template match="дробь"><mfrac><xsl:apply-templates select="*"/></mfrac></xsl:template>
+
+            <xsl:template match="число"><mn><xsl:value-of select="." /></mn></xsl:template>
+
+            <xsl:template match="низверх"><munderover><xsl:apply-templates select="*"/></munderover></xsl:template>
+
+            <xsl:template match="верх"><msup><xsl:apply-templates select="*"/></msup></xsl:template>
+
+            <xsl:template match="низ"><msub><xsl:apply-templates select="*"/></msub></xsl:template>
+
+        </xsl:stylesheet>
+    </script>
+    <script id="xml" type="text/xml">
+<строка>
+    <операнд>σ</операнд>
+    <оператор>=</оператор>
+    <корень>
+        <строка>
+            <дробь>
+                <строка>
+                    <число>1</число>
+                </строка>
+                <строка>
+                    <операнд>N</операнд>
+                </строка>
+            </дробь>
+            <строка>
+                <низверх>
+                    <строка>
+                        <оператор>∑</оператор>
+                    </строка>
+                    <строка>
+                        <операнд>i</операнд>
+                        <оператор>=</оператор>
+                        <число>1</число>
+                    </строка>
+                    <строка>
+                        <операнд>N</операнд>
+                    </строка>
+                </низверх>
+                <строка>
+                    <верх>
+                        <строка>
+                            <оператор >(</оператор>
+                            <низ>
+                                <строка>
+                                    <операнд>x</операнд>
+                                </строка>
+                                <строка>
+                                    <операнд>i</операнд>
+                                </строка>
+                            </низ>
+                            <оператор>−</оператор>
+                            <операнд>μ</операнд>
+                            <оператор >)</оператор>
+                        </строка>
+                        <строка>
+                            <число>2</число>
+                        </строка>
+                    </верх>
+                </строка>
+            </строка>
+        </строка>
+    </корень>
+    <оператор>.</оператор>
+</строка>
+    </script>
+
+</head>
+<body>
+<h4 id="author" style="display: none" title="GossJS">Жаворонков Григорий</h4>
+<h3>MathML</h3>
+<div id="result"></div>
+<script src="script.js"></script>
+</body>
+</html>
